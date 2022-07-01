@@ -1,10 +1,10 @@
 # Storia Frontend Assessment
 
-As part of our application process, we'd like to see what you can produce by giving you a small assignment. It should take you no more than a few hours to complete the assignment, but any extra polish or features you might want to put in will not go unnoticed.
+As part of our application process, we'd like to see what you can produce by giving you a small assignment. You can do as little or as much as your want, but any extra polish or features you might want to put in will not go unnoticed.
 
 ## The assignment
 
-We would like you to create an invoicing app. The features it should include:
+Storia Technologies wishes to build an invoicing application. The features it should include:
 
  - [ ] A Login and Registration form
  - [ ] Create a new invoice
@@ -23,6 +23,12 @@ Your backend can be anything, and does not have to work. If you would like to us
  - [ ] The ability to pay an invoice online (again, it doesnt have to work)
  - [ ] Highly reusable components
  - [ ] Tests
+ 
+### Design Brief
+We have added Storia's style guide to this repo for your UI reference, you may use the colours and font suggestions in it.
+Additionally, here are some interfaces to draw inspiration:
+- https://dribbble.com/shots/18226022-Minvoice-Invoicing-Dashboard-Design
+- https://dribbble.com/shots/17264371-Paypay-Web-App
 
 ## Requirements
 
