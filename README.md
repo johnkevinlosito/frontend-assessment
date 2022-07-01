@@ -24,7 +24,7 @@ Your backend can be anything, and does not have to work. If you would like to us
  - [ ] Highly reusable components
  - [ ] Tests
  
-### Design Brief
+#### Design Brief
 We have added Storia's style guide to this repo for your UI reference, you may use the colours and font suggestions in it.
 Additionally, here are some interfaces to draw inspiration:
 - https://dribbble.com/shots/18226022-Minvoice-Invoicing-Dashboard-Design
