@@ -20,6 +20,7 @@ Your backend can be anything, and does not have to work. If you would like to us
 
  - [ ] Add a due date to an invoice
  - [ ] View late invoices, or even better, alert when an invoice is late
+ - [ ] The ability to pay an invoice online (again, it doesnt have to work)
  - [ ] Highly reusable components
  - [ ] Tests
 
