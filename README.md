@@ -34,7 +34,7 @@ Additionally, here are some interfaces to draw inspiration:
 
 You should use the following tools to accomplish this task:
 
- - A modern JS framework of your choice except Angular 1/2.
+ - React or Vue
  - NPM (should run with npm run dev or npm run serve)
  - Babel - ES6/7 Syntax - you pick the stages
 
