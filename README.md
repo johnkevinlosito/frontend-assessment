@@ -4,7 +4,7 @@ As part of our application process, we'd like to see what you can produce by giv
 
 ## The assignment
 
-Storia Technologies wishes to build an invoicing application. The features it should include:
+Storia Technologies is a client who has approached you to build an invoicing application. The features it should include:
 
  - [ ] A Login and Registration form
  - [ ] Create a new invoice
