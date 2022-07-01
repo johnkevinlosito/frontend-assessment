@@ -6,11 +6,13 @@ As part of our application process, we'd like to see what you can produce by giv
 
 We would like you to create an invoicing app. The features it should include:
 
+ - [ ] A Login and Registration form
  - [ ] Create a new invoice
  - [ ] Add line items to the invoice. Line items may include hours of work at a certain rate, work-related expenses, materials, labor, etc.
  - [ ] Add notes to the invoice, including possibly how to pay it, where to send checks, etc.
  - [ ] Send the invoice via email (does not have to actually send emails, but if it does, great!)
  - [ ] View invoices including status (paid, outstanding, late, etc.)
+ - [ ] Polished UI/UX
 
 Your backend can be anything, and does not have to work. If you would like to use a mocked-out interface, that is fine (even static data in code is ok).
 
@@ -18,7 +20,6 @@ Your backend can be anything, and does not have to work. If you would like to us
 
  - [ ] Add a due date to an invoice
  - [ ] View late invoices, or even better, alert when an invoice is late
- - [ ] Polish and UX
  - [ ] Highly reusable components
  - [ ] Tests
 
@@ -27,7 +28,7 @@ Your backend can be anything, and does not have to work. If you would like to us
 You should use the following tools to accomplish this task:
 
  - A modern JS framework of your choice except Angular 1/2. This choice should be noted in your comments.
- - Webpack (should run with webpack-dev-server)
+ - NPM (should run with npm run dev or npm run serve)
  - Babel - ES6/7 Syntax - you pick the stages
 
 If you have any questions, please ask!
