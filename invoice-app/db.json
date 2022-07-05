@@ -21,5 +21,33 @@
       "password": "3123",
       "id": 3
     }
+  ],
+  "invoices": [
+    {
+      "id": 1,
+      "inv": "INV-MThtS6",
+      "status": "paid",
+      "amount": 100,
+      "description": "Project/Description",
+      "lineItems": [{ "item": "Name", "qty": 1, "price": 100, "total": 100 }],
+      "clientName": "Alan Turing",
+      "clientEmail": "alan@turing.com",
+      "issueDate": "",
+      "dueDate": "",
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "inv": "INV-MThtS5",
+      "status": "pending",
+      "amount": 100,
+      "description": "Project/Description",
+      "lineItems": [{ "item": "Name", "qty": 1, "price": 100, "total": 100 }],
+      "clientName": "Alan Turing",
+      "clientEmail": "alan@turing.com",
+      "issueDate": "",
+      "dueDate": "",
+      "notes": ""
+    }
   ]
 }
