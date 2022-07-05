@@ -1,8 +1,39 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom'
 import Card from '../components/Card'
+import { loginUser, useAuthDispatch, useAuthState } from '../context';
 
 const Register = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const dispatch = useAuthDispatch()
+    const { loading, errorMessage } = useAuthState()
+    const navigate = useNavigate();
+    const onSubmit = async userDetails => {
+        try {
+            let response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userDetails)
+            });
+            const data = await response.json()
+            console.log("data", data)
+            if (data) {
+                try {
+                    let response = await loginUser(dispatch, data) //loginUser action makes the request and handles all the neccessary state changes
+                    console.log("response", response.id)
+                    if (!response.id) return
+                    navigate(`/invoices`);
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-100">
             <Card>
@@ -15,20 +46,50 @@ const Register = () => {
                         />
                         <h2 className="mt-6 text-center text-3xl font-extrabold font-poppins">Register new account</h2>
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
-                        <input type="hidden" name="remember" defaultValue="true" />
+                    {
+                        errorMessage ? <p className="text-red-200">{errorMessage}</p> : null
+                    }
+                    <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={handleSubmit(onSubmit)}>
                         <div className="rounded-md shadow-sm -space-y-px">
+                            <div className='flex'>
+                                <div>
+                                    <label htmlFor="firstName" className="sr-only">
+                                        First Name
+                                    </label>
+                                    <input
+                                        id="firstName"
+                                        {...register("firstName", { required: "First name is required" })}
+                                        type="text"
+                                        required
+                                        className="form-control rounded-tl-md"
+                                        placeholder="First Name"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="lastName" className="sr-only">
+                                        Last Name
+                                    </label>
+                                    <input
+                                        id="lastName"
+                                        {...register("lastName", { required: "Last name is required" })}
+                                        type="text"
+                                        required
+                                        className="form-control rounded-tr-md"
+                                        placeholder="Last Name"
+                                    />
+                                </div>
+                            </div>
+
                             <div>
                                 <label htmlFor="email-address" className="sr-only">
                                     Email address
                                 </label>
                                 <input
                                     id="email-address"
-                                    name="email"
+                                    {...register("email", { required: "Email Address is required", pattern: /^\S+@\S+$/i })}
                                     type="email"
-                                    autoComplete="email"
                                     required
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                                    className="form-control"
                                     placeholder="Email address"
                                 />
                             </div>
@@ -38,22 +99,12 @@ const Register = () => {
                                 </label>
                                 <input
                                     id="password"
-                                    name="password"
+                                    {...register("password", { required: "Password is required" })}
                                     type="password"
-                                    autoComplete="current-password"
                                     required
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                                    className="form-control rounded-b-md"
                                     placeholder="Password"
                                 />
-                            </div>
-                        </div>
-
-                        <div className="flex items-center justify-end">
-
-                            <div className="text-sm">
-                                <Link to="/" className="font-medium text-primary hover:text-primary">
-                                    Already have an account?
-                                </Link>
                             </div>
                         </div>
 
@@ -61,9 +112,15 @@ const Register = () => {
                             <button
                                 type="submit"
                                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary"
+                                disabled={loading}
                             >
                                 Register
                             </button>
+                        </div>
+                        <div className="text-sm text-center">
+                            <Link to="/" className="link font-medium">
+                                Already have an account?
+                            </Link>
                         </div>
                     </form>
                 </div>
