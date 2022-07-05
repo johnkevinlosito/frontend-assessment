@@ -23,7 +23,7 @@ const SideNav = () => {
                         <img
                             className="mx-auto h-12 w-full object-contain"
                             src="storia-logo.png"
-                            alt="Workflow"
+                            alt="Storia Logo"
                         />
                     </div>
                     <div className='px-4 space-y-4 flex flex-col'>

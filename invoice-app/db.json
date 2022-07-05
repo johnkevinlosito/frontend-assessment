@@ -29,11 +29,18 @@
       "status": "paid",
       "amount": 100,
       "description": "Project/Description",
-      "lineItems": [{ "item": "Name", "qty": 1, "price": 100, "total": 100 }],
+      "lineItems": [
+        {
+          "item": "Name",
+          "qty": 1,
+          "price": 100,
+          "total": 100
+        }
+      ],
       "clientName": "Alan Turing",
       "clientEmail": "alan@turing.com",
-      "issueDate": "",
-      "dueDate": "",
+      "issueDate": "2022-07-05",
+      "dueDate": "2022-07-10",
       "notes": ""
     },
     {
@@ -42,12 +49,62 @@
       "status": "pending",
       "amount": 100,
       "description": "Project/Description",
-      "lineItems": [{ "item": "Name", "qty": 1, "price": 100, "total": 100 }],
+      "lineItems": [
+        {
+          "item": "Name",
+          "qty": 1,
+          "price": 100,
+          "total": 100
+        }
+      ],
       "clientName": "Alan Turing",
       "clientEmail": "alan@turing.com",
-      "issueDate": "",
-      "dueDate": "",
+      "issueDate": "2022-07-05",
+      "dueDate": "2022-07-08",
       "notes": ""
+    },
+    {
+      "lineItems": [
+        {
+          "item": "Bug fixing",
+          "qty": "8",
+          "price": "100"
+        }
+      ],
+      "inv": "INV-aH-R6H",
+      "clientName": "Billy Joe",
+      "clientEmail": "billy@joe.com",
+      "description": "Project Update",
+      "notes": "ez",
+      "issueDate": "2022-07-05",
+      "dueDate": "2022-07-30",
+      "status": "pending",
+      "amount": 800,
+      "id": 3
+    },
+    {
+      "lineItems": [
+        {
+          "item": "New payment gateway",
+          "qty": "50",
+          "price": "100"
+        },
+        {
+          "item": "Export",
+          "qty": "3",
+          "price": "80"
+        }
+      ],
+      "inv": "INV-hrH_Ew",
+      "clientName": "Dante Filgar",
+      "clientEmail": "dante@filgar.com",
+      "description": "Phase 2",
+      "notes": "Done",
+      "issueDate": "2022-07-05",
+      "dueDate": "2022-07-13",
+      "status": "pending",
+      "amount": 5240,
+      "id": 4
     }
   ]
 }
