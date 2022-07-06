@@ -47,7 +47,7 @@ const InvoicesTable = ({ columns, data }) => {
                     <option value="">Show All</option>
                     <option value="paid">Paid</option>
                     <option value="pending">Pending</option>
-                    <option value="due">Due</option>
+                    <option value="late">Late</option>
                 </select>
             </div>
             <div className='w-full relative overflow-x-auto'>

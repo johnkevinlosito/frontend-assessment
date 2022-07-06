@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import { format, isFuture } from 'date-fns'
 import React, { useEffect, useMemo, useState } from 'react'
 import InvoiceForm from '../components/InvoiceForm'
 import InvoicesTable from '../components/InvoicesTable'
@@ -16,7 +16,13 @@ const Invoices = () => {
     useEffect(() => {
         const getInvoices = async () => {
             const invoicesFromServer = await fetchInvoices()
-            setInvoices(invoicesFromServer)
+
+            setInvoices(invoicesFromServer?.map(inv => {
+                return {
+                    ...inv,
+                    status: inv.status !== 'paid' && !isFuture(new Date(inv.dueDate)) ? 'late' : inv.status
+                }
+            }))
         }
 
         getInvoices()
