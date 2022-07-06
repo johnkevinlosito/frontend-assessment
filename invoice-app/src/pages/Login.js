@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Card from '../components/Card'
 import { loginUser, useAuthDispatch, useAuthState } from '../context'
@@ -8,9 +8,12 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const dispatch = useAuthDispatch()
-    const { loading, errorMessage } = useAuthState()
-
+    const { loading, errorMessage, token } = useAuthState()
     const navigate = useNavigate();
+
+    if (token) {
+        return <Navigate to="/invoices" />;
+    }
 
     const onSubmit = async data => {
         try {
