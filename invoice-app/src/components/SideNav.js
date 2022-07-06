@@ -4,32 +4,36 @@ import { logout, useAuthDispatch, useAuthState } from '../context'
 import Card from './Card'
 import { MdSpaceDashboard } from 'react-icons/md'
 import { FaFileInvoiceDollar, FaWallet } from 'react-icons/fa'
-import { IoLogOut } from 'react-icons/io5'
+import { IoLogOut, IoCloseSharp } from 'react-icons/io5'
+import avatar from '../assets/default_avatar.png'
 
-const SideNav = () => {
-    const dispatch = useAuthDispatch() // read dispatch method from context
-    const userDetails = useAuthState() //read user details from context
+const SideNav = ({ isOpen, setOpenSideNav }) => {
+    const dispatch = useAuthDispatch()
+    const userDetails = useAuthState()
     const navigate = useNavigate();
     const handleLogout = () => {
-        logout(dispatch) //call the logout action
+        logout(dispatch)
 
-        navigate(`/`); //navigate to login page on logout
+        navigate(`/`);
     }
     return (
-        <div className='hidden md:block w-60 bg-white shadow-lg flex-shrink-0'>
+        <div className={`md:block w-full md:w-60 bg-white shadow-lg flex-shrink-0 ${isOpen ? 'block' : 'hidden'}`}>
             <div className='flex flex-col justify-between gap-4 pb-8 overflow-y-auto h-screen text-black'>
                 <div className=''>
-                    <div className='p-4 mb-4'>
+                    <div className='p-4 mb-4 flex'>
                         <img
                             className="mx-auto h-12 w-full object-contain"
                             src="storia-logo.png"
                             alt="Storia Logo"
                         />
+                        {isOpen && <button onClick={() => setOpenSideNav(false)}>
+                            <IoCloseSharp size={36} />
+                        </button>}
                     </div>
                     <div className='px-4 space-y-4 flex flex-col'>
                         <Card className='bg-slate-50 shadow-none p-2'>
                             <div className='flex gap-2 items-center'>
-                                <img src='https://via.placeholder.com/60'
+                                <img src={avatar}
                                     className='object-contain rounded-full w-12'
                                     alt='user' />
                                 <div className='flex flex-col'>

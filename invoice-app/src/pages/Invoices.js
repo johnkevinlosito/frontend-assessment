@@ -102,7 +102,7 @@ const Invoices = () => {
     return (
         <MainLayout>
             <div className='py-4 px-8'>
-                <div className='flex justify-between items-center mb-8'>
+                <div className='flex flex-col sm:flex-row justify-between gap-4 sm:items-center mb-8'>
                     <div>
                         <h2 className='font-poppins text-xl'>Invoices</h2>
                         <span className='font-light'>List of all your recent transactions</span>

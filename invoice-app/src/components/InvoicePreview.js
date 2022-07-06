@@ -88,9 +88,9 @@ const InvoicePreview = ({ invoice, isOpenPreview, setIsOpenPreview }) => {
                                     </table>
                                 </div>
 
-                                <div className='mt-4 flex justify-between'>
+                                <div className='mt-4 flex flex-col-reverse sm:flex-row justify-between'>
                                     <p className='w-1/2 label'>{invoice.notes}</p>
-                                    <div className='pr-4'>
+                                    <div className='pr-0 sm:pr-4 flex justify-between'>
                                         <span className='label mr-12'>Total Amount</span>
                                         <span className='font-bold text-base'>${invoice.amount}</span>
                                     </div>

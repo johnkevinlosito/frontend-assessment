@@ -40,7 +40,7 @@ const InvoicesTable = ({ columns, data }) => {
                     className="form-control rounded-md"
                 />
                 <select
-                    className="form-control rounded-md max-w-[150px]"
+                    className="form-control rounded-md max-w-[120px]"
                     onChange={e => {
                         setFilter("status", e.target.value || undefined)
                     }}>
