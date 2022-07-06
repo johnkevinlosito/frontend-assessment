@@ -1,8 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { format } from 'date-fns'
 import React, { Fragment } from 'react'
+import logo from '../assets/storia-logo.png'
+import PaymentForm from './PaymentForm'
 
-const InvoicePreview = ({ invoice, isOpenPreview, setIsOpenPreview }) => {
+const InvoicePreview = ({ invoice, isOpenPreview, setIsOpenPreview, payment = false }) => {
     return (
         <Transition appear show={isOpenPreview} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={() => setIsOpenPreview(false)}>
@@ -29,7 +31,7 @@ const InvoicePreview = ({ invoice, isOpenPreview, setIsOpenPreview }) => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-sm text-left align-middle shadow-xl transition-all">
+                            <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-sm text-left align-middle shadow-xl transition-all">
                                 <div className='flex justify-between items-center'>
                                     <div>
                                         <Dialog.Title
@@ -43,7 +45,7 @@ const InvoicePreview = ({ invoice, isOpenPreview, setIsOpenPreview }) => {
                                     <div className='p-4 mb-4'>
                                         <img
                                             className="mx-auto h-12 object-contain"
-                                            src="storia-logo.png"
+                                            src={logo}
                                             alt="Storia Logo"
                                         />
                                     </div>
@@ -96,7 +98,10 @@ const InvoicePreview = ({ invoice, isOpenPreview, setIsOpenPreview }) => {
                                     </div>
                                 </div>
 
-                                <div className="mt-10 flex justify-end items-center border-t border-slate-100 pt-4">
+                                {
+                                    payment && <PaymentForm invoice={invoice} />
+                                }
+                                {!payment && <div className="mt-10 flex justify-end items-center border-t border-slate-100 pt-4">
 
                                     <button
                                         type="button"
@@ -105,7 +110,7 @@ const InvoicePreview = ({ invoice, isOpenPreview, setIsOpenPreview }) => {
                                     >
                                         Close
                                     </button>
-                                </div>
+                                </div>}
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>

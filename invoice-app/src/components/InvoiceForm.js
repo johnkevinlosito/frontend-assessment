@@ -25,7 +25,7 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
         setInvoiceId(nanoid(6))
     }, [])
 
-    function closeModal() {
+    const closeModal = () => {
         setIsOpen(false)
         setOpenInvoiceForm(false)
     }
