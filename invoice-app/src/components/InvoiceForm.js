@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Controller, useForm, useFieldArray, useWatch } from 'react-hook-form'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,7 +8,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import InvoicePreview from './InvoicePreview';
 
 const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
-    const [invoiceId, setInvoiceId] = useState(nanoid(6))
+    const [invoiceId, setInvoiceId] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenPreview, setIsOpenPreview] = useState(false)
@@ -20,6 +20,10 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
             ]
         }
     });
+
+    useEffect(() => {
+        setInvoiceId(nanoid(6))
+    }, [])
 
     function closeModal() {
         setIsOpen(false)
@@ -74,7 +78,7 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
     return (
         <div className='w-full max-w-xl bg-white shadow-lg fixed right-0'>
             <form action="#" method="POST" onSubmit={handleSubmit(onSubmit)} className='flex flex-col justify-between gap-4 overflow-y-auto h-screen relative p-5 text-black'>
-                <button className='absolute right-5 top-5' onClick={() => setOpenInvoiceForm(false)}>x</button>
+                <button className='absolute right-5 top-5' type='button' onClick={() => setOpenInvoiceForm(false)}>x</button>
                 <div className='space-y-4'>
                     <h3 className='font-poppins mb-4'>Create new invoice</h3>
                     <span className='text-xl'>#INV-{invoiceId}</span>

@@ -5,6 +5,7 @@ import InvoicesTable from '../components/InvoicesTable'
 import MainLayout from '../components/MainLayout'
 import { FaAngleRight } from 'react-icons/fa'
 import InvoicePreview from '../components/InvoicePreview'
+import { Transition } from '@headlessui/react'
 
 const Invoices = () => {
 
@@ -117,9 +118,20 @@ const Invoices = () => {
                 </div>
                 <InvoicesTable columns={columns} data={invoices || []} />
             </div>
-            {openInvoiceForm && <div className='fixed inset-0 bg-slate-300 bg-opacity-30 z-10'>
-                <InvoiceForm setOpenInvoiceForm={setOpenInvoiceForm} setInvoices={setInvoices} invoices={invoices} />
-            </div>}
+            <Transition show={openInvoiceForm}>
+                <div className='fixed inset-0 bg-slate-300 bg-opacity-30 z-10'>
+                    <Transition.Child
+                        enter="transition ease-in-out duration-500 transform"
+                        enterFrom="translate-x-full"
+                        enterTo="translate-x-0"
+                        leave="transition ease-in-out duration-500 transform"
+                        leaveFrom="translate-x-0"
+                        leaveTo="translate-x-full"
+                    >
+                        <InvoiceForm setOpenInvoiceForm={setOpenInvoiceForm} setInvoices={setInvoices} invoices={invoices} />
+                    </Transition.Child>
+                </div>
+            </Transition>
             {isOpenPreview && selectedInvoice ? <InvoicePreview invoice={selectedInvoice} isOpenPreview={isOpenPreview} setIsOpenPreview={setIsOpenPreview} /> : null}
         </MainLayout>
     )

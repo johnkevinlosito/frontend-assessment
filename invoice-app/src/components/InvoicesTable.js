@@ -59,7 +59,7 @@ const InvoicesTable = ({ columns, data }) => {
                                     {
                                         headerGroup.headers.map(column => (
                                             <div {...column.getHeaderProps(column.getSortByToggleProps)} className={`px-6 py-3 table-cell`}>
-                                                <span className={`flex gap-2 items-center ${column.id == 'status' || column.id == 'amount' ? 'justify-end' : ''}`} >{
+                                                <span className={`flex gap-2 items-center ${column.id === 'status' || column.id === 'amount' ? 'justify-end' : ''}`} >{
                                                     column.render('Header')}
 
                                                     {column.isSorted
@@ -83,7 +83,7 @@ const InvoicesTable = ({ columns, data }) => {
                                         {
                                             row.cells.map(cell => {
                                                 return (
-                                                    <div {...cell.getCellProps()} className={`px-6 py-3 table-cell ${cell.column.id == 'status' || cell.column.id == 'amount' ? 'text-right' : ''}`}>
+                                                    <div {...cell.getCellProps()} className={`px-6 py-3 table-cell ${cell.column.id === 'status' || cell.column.id === 'amount' ? 'text-right' : ''}`}>
                                                         {cell.render('Cell')}
                                                     </div>
                                                 )
