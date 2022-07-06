@@ -14,14 +14,14 @@ const Login = () => {
 
     const onSubmit = async data => {
         try {
-            let response = await loginUser(dispatch, data) //loginUser action makes the request and handles all the neccessary state changes
+            let response = await loginUser(dispatch, data)
             if (!response?.id) return
             navigate(`/invoices`);
         } catch (error) {
             console.log(error)
         }
     }
-    // console.log(errors);
+
     return (
         <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-100">
             <Card>
@@ -52,7 +52,7 @@ const Login = () => {
                                     type="email"
 
 
-                                    className="form-control rounded-t-md"
+                                    className={`form-control rounded-t-md ${errors.email ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`}
                                     placeholder="Email address"
                                 />
                             </div>
@@ -66,7 +66,7 @@ const Login = () => {
                                     type="password"
 
 
-                                    className="form-control rounded-b-md"
+                                    className={`form-control rounded-b-md ${errors.password ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`}
                                     placeholder="Password"
                                 />
                             </div>

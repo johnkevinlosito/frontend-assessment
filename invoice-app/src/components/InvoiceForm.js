@@ -12,7 +12,7 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenPreview, setIsOpenPreview] = useState(false)
-    const { control, register, handleSubmit, getValues, formState: { isDirty, isValid } } = useForm({
+    const { control, register, handleSubmit, getValues, formState: { isDirty, isValid, errors } } = useForm({
         mode: "onChange",
         defaultValues: {
             lineItems: [
@@ -20,7 +20,7 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
             ]
         }
     });
-    console.log(isDirty, isValid, getValues())
+
     function closeModal() {
         setIsOpen(false)
         setOpenInvoiceForm(false)
@@ -70,6 +70,7 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
         }
         return totalValue
     }
+
     return (
         <div className='w-full max-w-xl bg-white shadow-lg fixed right-0'>
             <form action="#" method="POST" onSubmit={handleSubmit(onSubmit)} className='flex flex-col justify-between gap-4 overflow-y-auto h-screen relative p-5 text-black'>
@@ -87,7 +88,7 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
                                 id="clientName"
                                 {...register("clientName", { required: "Name is required" })}
                                 type="text"
-                                className="form-control rounded-md"
+                                className={`form-control rounded-md ${errors.clientName ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`}
                                 placeholder="Client Name"
                             />
                         </div>
@@ -99,7 +100,7 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
                                 id="clientEmail"
                                 {...register("clientEmail", { required: "Email is required", pattern: /^\S+@\S+$/i })}
                                 type="email"
-                                className="form-control rounded-md"
+                                className={`form-control rounded-md ${errors.clientEmail ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`}
                                 placeholder="Client Email"
                             />
                         </div>
@@ -112,7 +113,7 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
                             id="description"
                             {...register("description", { required: "Description is required" })}
                             type="text"
-                            className="form-control rounded-md"
+                            className={`form-control rounded-md ${errors.description ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`}
                             placeholder="Project/Description"
                         />
                     </div>
@@ -133,7 +134,7 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
                                         placeholderText='Select date'
                                         onChange={(date) => field.onChange(date)}
                                         selected={field.value}
-                                        className="form-control rounded-md"
+                                        className={`form-control rounded-md ${errors.issueDate ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`}
                                         minDate={new Date()}
                                     />
                                 )}
@@ -154,7 +155,7 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
                                         placeholderText='Select date'
                                         onChange={(date) => field.onChange(date)}
                                         selected={field.value}
-                                        className="form-control rounded-md"
+                                        className={`form-control rounded-md ${errors.dueDate ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`}
                                         minDate={new Date()}
                                     />
                                 )}
@@ -175,9 +176,9 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
                         <tbody>
                             {fields.map((item, index) => (
                                 <tr key={item.id} className="">
-                                    <td className='pr-2'><input {...register(`lineItems.${index}.item`, { required: "Item is required" })} className='form-control rounded-md mb-2 mr-2' /></td>
-                                    <td className='pr-2'><input {...register(`lineItems.${index}.qty`, { required: "Qty is required", min: 1 })} type='number' min={1} className='form-control rounded-md mb-2 mr-2' /></td>
-                                    <td className='pr-2'><input {...register(`lineItems.${index}.price`, { required: "Price is required", min: 0 })} type='number' min={0} className='form-control rounded-md mb-2 mr-2' /></td>
+                                    <td className='pr-2'><input {...register(`lineItems.${index}.item`, { required: "Item is required" })} className={`form-control rounded-md mb-2 mr-2 ${errors.lineItems?.[index].item ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`} /></td>
+                                    <td className='pr-2'><input {...register(`lineItems.${index}.qty`, { required: "Qty is required", min: 1 })} type='number' min={1} className={`form-control rounded-md mb-2 mr-2 ${errors.lineItems?.[index].qty ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`} /></td>
+                                    <td className='pr-2'><input {...register(`lineItems.${index}.price`, { required: "Price is required", min: 0 })} type='number' min={0} className={`form-control rounded-md mb-2 mr-2 ${errors.lineItems?.[index].price ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`} /></td>
                                     <td><span>${lineItems[index]?.price * lineItems[index]?.qty}</span></td>
                                     <td><button type="button" onClick={() => remove(index)} className="bg-red-400 text-white flex items-center justify-center rounded-full w-5 h-5">x</button></td>
                                 </tr>
@@ -202,7 +203,10 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
                         </label>
                         <textarea id="notes"
                             {...register("notes")}
-                            className="form-control rounded-md"></textarea>
+                            className={`form-control rounded-md`}
+                        >
+
+                        </textarea>
                     </div>
                 </div>
 
@@ -211,7 +215,7 @@ const InvoiceForm = ({ setOpenInvoiceForm, invoices, setInvoices }) => {
 
                     <button
                         type="button"
-                        className="text-primary uppercase text-sm"
+                        className={`${!isDirty || !isValid ? 'text-slate-400' : 'text-primary'}  uppercase text-sm`}
                         disabled={!isDirty || !isValid}
                         onClick={() => setIsOpenPreview(true)}
                     >

@@ -19,10 +19,9 @@ const Register = () => {
                 body: JSON.stringify(userDetails)
             });
             const data = await response.json()
-            console.log("data", data)
             if (data) {
                 try {
-                    let response = await loginUser(dispatch, data) //loginUser action makes the request and handles all the neccessary state changes
+                    let response = await loginUser(dispatch, data)
                     console.log("response", response.id)
                     if (!response.id) return
                     navigate(`/invoices`);
@@ -34,6 +33,7 @@ const Register = () => {
             console.log(error)
         }
     }
+
     return (
         <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-100">
             <Card>
@@ -60,8 +60,7 @@ const Register = () => {
                                         id="firstName"
                                         {...register("firstName", { required: "First name is required" })}
                                         type="text"
-                                        required
-                                        className="form-control rounded-tl-md"
+                                        className={`form-control rounded-tl-md ${errors.firstName ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`}
                                         placeholder="First Name"
                                     />
                                 </div>
@@ -73,8 +72,7 @@ const Register = () => {
                                         id="lastName"
                                         {...register("lastName", { required: "Last name is required" })}
                                         type="text"
-                                        required
-                                        className="form-control rounded-tr-md"
+                                        className={`form-control rounded-tr-md ${errors.lastName ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`}
                                         placeholder="Last Name"
                                     />
                                 </div>
@@ -88,8 +86,7 @@ const Register = () => {
                                     id="email-address"
                                     {...register("email", { required: "Email Address is required", pattern: /^\S+@\S+$/i })}
                                     type="email"
-                                    required
-                                    className="form-control"
+                                    className={`form-control ${errors.email ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`}
                                     placeholder="Email address"
                                 />
                             </div>
@@ -101,8 +98,7 @@ const Register = () => {
                                     id="password"
                                     {...register("password", { required: "Password is required" })}
                                     type="password"
-                                    required
-                                    className="form-control rounded-b-md"
+                                    className={`form-control rounded-b-md ${errors.password ? 'border-red-300 focus:ring-red-300 focus:border-red-300 ' : ''}`}
                                     placeholder="Password"
                                 />
                             </div>
